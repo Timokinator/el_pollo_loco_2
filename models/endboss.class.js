@@ -1,8 +1,7 @@
 class Endboss extends MovableObject {
 
-    scale_size = 2.5
-    width = this.width * this.scale_size;
-    height = this.height * this.scale_size;
+    width = 400;
+    height = 400;
 
     y = 85
 
@@ -16,17 +15,22 @@ class Endboss extends MovableObject {
 
 
     IMAGES_IDLE = [
+        'img/4_enemie_boss_chicken/2_alert/G5.png',
+        'img/4_enemie_boss_chicken/2_alert/G6.png',
+        'img/4_enemie_boss_chicken/2_alert/G7.png',
+        'img/4_enemie_boss_chicken/2_alert/G8.png',
+        'img/4_enemie_boss_chicken/2_alert/G9.png',
+        'img/4_enemie_boss_chicken/2_alert/G10.png',
+        'img/4_enemie_boss_chicken/2_alert/G11.png',
+        'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
-
-    otherDirection = true;
-
 
 
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 500;
+        this.x = 750;
         this.animate();
 
     }

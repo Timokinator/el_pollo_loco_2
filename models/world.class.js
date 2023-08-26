@@ -5,7 +5,6 @@ class World {
     //clouds = level1.clouds;
     //backgroundObjects = level1.backgroundObjects;
 
-    groundObjects = level1.groundObjects;
 
     canvas;
     ctx;
@@ -16,7 +15,6 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        // this.createGround();
         this.draw();
         this.setWorld();
         this.checkCollisions();
@@ -32,10 +30,11 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    console.log('Collision ', this.character, enemy)
+                    this.character.hit();
+                    //console.log('Collision ', this.character, enemy, this.character.energy)
                 }
             })
-        }, 1000);
+        }, 200);
     }
 
 
@@ -45,16 +44,12 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.groundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);
 
-
-
-        // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -86,7 +81,7 @@ class World {
 
     flipImage(mo) {
         this.ctx.save();
-        this.ctx.translate(mo.width / 1, 0); //1.5
+        this.ctx.translate(mo.width / 1, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     };

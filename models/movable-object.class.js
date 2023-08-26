@@ -2,22 +2,23 @@ class MovableObject {
     x = 120;
     y = 250;
     img;
-    height = 180;
-    width = 180;
     imageCache = {};
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 3;
+    energy = 100;
+
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
 
-                if (this.y - this.speedY > 288) {
-                    this.y = 288;
-                    this.land();
+                if (this.y - this.speedY > 220) {
+                    this.y = 220;
+                    //this.land();
                 } else {
                     this.y -= this.speedY;
                 };
@@ -29,7 +30,7 @@ class MovableObject {
     }
 
     isAboveGround() {
-        return this.y < 288;
+        return this.y < 220;
     }
 
 
@@ -71,7 +72,10 @@ class MovableObject {
 
     moveLeft() {
         this.x -= this.speed;
-        this.otherDirection = true;
+        if (this instanceof Character) {
+            this.otherDirection = true;
+        }
+
     };
 
 
@@ -102,16 +106,34 @@ class MovableObject {
 
 
 
-    isColliding(obj) { //die +150 geschätzt eingefügt, da sonst Collisionen völlig falsch....bei 150 ungefähr passen
+    isColliding(obj) {
         return (
-            this.x + this.width/* + 150*/) >= obj.x &&
-            this.x/* +150*/ <= (obj.x + obj.width) &&
-            (this.y + /*this.offsetY + */this.height) >= obj.y &&
+            this.x + this.width) >= obj.x &&
+            this.x <= (obj.x + obj.width) &&
+            (this.y + /*this.offsetY */ + this.height) >= obj.y &&
             (this.y/* + this.offsetY*/) <= (obj.y + obj.height) /*&&
                 obj.onCollisionCourse; */
     }
 
 
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        return timePassed < 1.5;
+    }
 
 
 
