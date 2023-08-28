@@ -32,6 +32,13 @@ window.addEventListener('keydown', (e) => { // Junus hat "keypress" - falls spä
     if(e.keyCode == 32) {
         keyboard.SPACE = true;
     }
+
+    if(e.keyCode == 68) {
+        keyboard.D = true;
+    }
+
+
+
 });
 
 
@@ -55,6 +62,12 @@ window.addEventListener('keyup', (e) => { // Junus hat "keypress" - falls späte
     if(e.keyCode == 32) {
         keyboard.SPACE = false;
     }
+
+    if(e.keyCode == 68) {
+        keyboard.D = false;
+    }
+
+
 });
 
 
