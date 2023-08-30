@@ -16,8 +16,8 @@ class HealthBar extends DrawableObject {
         this.loadImages(this.IMAGES);
         this.x = 20;
         this.y = 0;
-        this.height = 158/3;
-        this.width = 595/3;
+        this.height = 158 / 3;
+        this.width = 595 / 3;
 
         this.setPercentage(this.percentage);
     }
@@ -32,15 +32,15 @@ class HealthBar extends DrawableObject {
 
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage > 80) {
             return 5;
-        } else if (this.percentage > 80) {
-            return 4;
         } else if (this.percentage > 60) {
-            return 3;
+            return 4;
         } else if (this.percentage > 40) {
-            return 2;
+            return 3;
         } else if (this.percentage > 20) {
+            return 2;
+        } else if (this.percentage > 0) {
             return 1;
         } else {
             return 0;

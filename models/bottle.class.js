@@ -40,7 +40,7 @@ class Bottle extends DrawableObject {
         this.loadImages(this.IMAGES_SPLASH);
 
         this.img = this.imageCache['img/6_salsa_bottle/1_salsa_bottle_on_ground.png'];
-        this.x = 200 + Math.random() * 480;
+        this.x = 200 + Math.random() * 3200;
 
     }
 
