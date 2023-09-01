@@ -55,6 +55,13 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ]
 
+    offset = {
+        left: 10,
+        right: 10,
+        top: 90,
+        bottom: 10
+    };
+
 
     world;
     walking_sound = new Audio('audio/running2.mp3');
@@ -95,6 +102,8 @@ class Character extends MovableObject {
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jumping_sound.pause();
+                this.jumping_sound.currentTime = 0;
                 this.timeNoMove = 0;
                 this.jump();
                 this.jumping_sound.play();

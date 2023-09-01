@@ -8,26 +8,18 @@ class MovableObject extends DrawableObject {
 
     lastHit = 0;
 
-
-    /* 
-    if (this.isAboveGround() || this.speedY > 0 || this instanceof Character) {
-                if (this.y - this.speedY > 220) {
-                    this.y = 220;
-                } else {
-                    this.y -= this.speedY;
-                };
-                this.speedY -= this.acceleration
-    
-    */
-
-
-
+    offset = {
+        right: 0,
+        left: 0,
+        top: 0,
+        bottom: 0,
+    };
 
 
 
     applyGravity() {
         setInterval(() => {
-            if (this instanceof Character && this.isAboveGround() || this.speedY > 0 ) {
+            if (this instanceof Character && this.isAboveGround() || this.speedY > 0) {
                 if (this.y - this.speedY > 220) {
                     this.y = 220;
                 } else {
@@ -35,7 +27,7 @@ class MovableObject extends DrawableObject {
                 };
                 this.speedY -= this.acceleration
 
-            } else if (this instanceof ThrowableObject)  {
+            } else if (this instanceof ThrowableObject) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
 
@@ -96,14 +88,25 @@ class MovableObject extends DrawableObject {
     }
 
 
+    //backup isColliding:
+
+    //isColliding(obj) {
+    //  return (
+    //    this.x + this.width) >= obj.x &&
+    //  this.x <= (obj.x + obj.width) &&
+    //  (this.y + /*this.offsetY */ + this.height) >= obj.y &&
+    // (this.y/* + this.offsetY*/) <= (obj.y + obj.height) /*&&
+    //     obj.onCollisionCourse; */
+    // }
+
 
 
     isColliding(obj) {
         return (
-            this.x + this.width) >= obj.x &&
-            this.x <= (obj.x + obj.width) &&
-            (this.y + /*this.offsetY */ + this.height) >= obj.y &&
-            (this.y/* + this.offsetY*/) <= (obj.y + obj.height) /*&&
+            this.x + this.width - this.offset.right) >= obj.x + obj.offset.left &&
+            this.x + this.offset.left <= (obj.x + obj.width - obj.offset.right) &&
+            (this.y + this.height - this.offset.bottom) >= obj.y + obj.offset.top &&
+            (this.y + this.offset.top) <= (obj.y + obj.height - obj.offset.bottom) /*&&
                 obj.onCollisionCourse; */
     }
 

@@ -11,8 +11,14 @@ class World {
     healthBar = new HealthBar();
     bottleBar = new BottleBar();
     coinBar = new CoinBar();
+    healthBarEndboss = new HealthBarEndboss();
+    healthBarEndbossIcon = new HealthBarEndbossIcon();
     throwableObjects = [];
     collectedBottles = 1;
+    collectedCoins = 0;
+    offset;
+    firstContact = false;
+
 
 
     constructor(canvas, keyboard) {
@@ -34,6 +40,7 @@ class World {
         setInterval(() => {
             this.checkColllisions();
             this.checkCollisionsCharacterBottles();
+            this.checkCollisionsCharacterCoins();
             this.checkThrowObjects();
 
 
@@ -45,10 +52,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 25, this.character.y + 25);
             this.throwableObjects.push(bottle);
             this.collectedBottles -= 1;
-
         }
-
-
     }
 
 
@@ -61,26 +65,28 @@ class World {
                 this.healthBar.setPercentage(this.character.energy);
             }
         })
-
-
     }
 
     checkCollisionsCharacterBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
-                console.log(bottle, this.character)
                 this.collectedBottles += 1;
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 10);
 
             }
         })
-
-
     }
 
-
-
+    checkCollisionsCharacterCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.collectedCoins += 1;
+                this.level.coins.splice(this.level.coins.indexOf(coin), 1);
+                this.coinBar.setPercentage(this.coinBar.percentage += 10);
+            }
+        })
+    }
 
 
 
@@ -96,6 +102,8 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.coins);
+
 
 
 
@@ -105,6 +113,12 @@ class World {
         this.addToMap(this.healthBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.coinBar);
+        if (this.character.x >= 3000 || this.firstContact) {
+            this.firstContact = true;
+            this.addToMap(this.healthBarEndboss);
+            this.addToMap(this.healthBarEndbossIcon);
+        };
+
         this.ctx.translate(this.camera_x, 0);
 
 
