@@ -17,6 +17,10 @@ class ThrowableObject extends MovableObject {
     ];
 
 
+    hitted = false;
+
+
+
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_ROTATE);
@@ -36,10 +40,19 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         setInterval(() => {
             this.x += 25;
-            this.playAnimation(this.IMAGES_ROTATE);
+            if (!this.hitted) {
+                this.playAnimation(this.IMAGES_ROTATE);
+            } else {
+                this.playAnimation(this.IMAGES_SPLASH);
+            }
+    
+        
         }, 50);
 
     }
+
+
+
 
 
 

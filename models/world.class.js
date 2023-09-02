@@ -1,9 +1,6 @@
 class World {
     character = new Character();
     level = level1;
-    //enemies = level1.enemies;
-    //clouds = level1.clouds;
-    //backgroundObjects = level1.backgroundObjects;
     canvas;
     ctx;
     keyboard;
@@ -18,6 +15,11 @@ class World {
     collectedCoins = 0;
     offset;
     firstContact = false;
+
+    soundCoinCollect = new Audio('audio/coin.mp3');
+    soundBottleCollect = new Audio('audio/bottleCollect.mp3');
+    soundBottleHitEnemy = new Audio('audio/bottleSplat1.mp3');
+
 
 
 
@@ -38,9 +40,12 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkColllisions();
+            this.checkColllisionsCharacterEnemies();
+            this.checkColllisionsCharacterEndboss();
             this.checkCollisionsCharacterBottles();
             this.checkCollisionsCharacterCoins();
+            this.checkCollisionsBottlesEnemies();
+            this.checkCollisionsBottlesEndboss();
             this.checkThrowObjects();
 
 
@@ -58,18 +63,30 @@ class World {
 
 
 
-    checkColllisions() {
+    checkColllisionsCharacterEnemies() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !enemy.dead) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
             }
         })
-    }
+    };
+
+
+    checkColllisionsCharacterEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss) && endboss.energy > 0) {
+                this.character.hit();
+                this.healthBar.setPercentage(this.character.energy);
+            }
+        })
+    };
+
 
     checkCollisionsCharacterBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
+                this.playSound(this.soundBottleCollect);
                 this.collectedBottles += 1;
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 10);
@@ -81,11 +98,54 @@ class World {
     checkCollisionsCharacterCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
+                this.playSound(this.soundCoinCollect)
                 this.collectedCoins += 1;
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 this.coinBar.setPercentage(this.coinBar.percentage += 10);
             }
         })
+    }
+
+
+    // in progress:
+
+    checkCollisionsBottlesEnemies() {
+        this.throwableObjects.forEach((thrownObject) => {
+            this.level.enemies.forEach((enemy) => {
+                if (thrownObject.isColliding(enemy)) {
+                    console.log('hit');
+                    this.playSound(this.soundBottleHitEnemy);
+                    this.throwableObjects[this.throwableObjects.indexOf(thrownObject)].hitted = true;
+                    this.level.enemies[this.level.enemies.indexOf(enemy)].dead = true;
+ 
+
+                }
+            });
+        })
+    }
+
+
+    checkCollisionsBottlesEndboss() {
+        this.throwableObjects.forEach((thrownObject) => {
+            this.level.endboss.forEach((endboss) => {
+                if (thrownObject.isColliding(endboss)) {
+                    console.log('hit');
+                    this.playSound(this.soundBottleHitEnemy);
+                    this.throwableObjects[this.throwableObjects.indexOf(thrownObject)].hitted = true;
+                    this.level.endboss[this.level.endboss.indexOf(endboss)].hit();                
+                }
+            });
+        })
+    };
+
+
+
+
+
+
+    playSound(sound) {
+        sound.currentTime = 0;
+        sound.play();
     }
 
 
@@ -103,6 +163,8 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.endboss);
+
 
 
 
