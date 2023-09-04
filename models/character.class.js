@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 240;
     width = 120;
 
-    speed = 10;
+    speed = 50;
     timeNoMove = 0;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -122,7 +122,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT)
             } else if (!this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
                 this.timeNoMove += 1;
-                if (this.timeNoMove > 30) {
+                if (this.timeNoMove > 1) {
                     this.playAnimation(this.IMAGES_IDLE);
                 };
 
