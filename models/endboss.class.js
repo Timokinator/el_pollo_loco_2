@@ -45,6 +45,8 @@ class Endboss extends MovableObject {
         bottom: 15
     };
 
+    soundDie = new Audio('audio/endboss_die.mp3');
+    soundDiePlayed = false;
 
 
 
@@ -58,6 +60,7 @@ class Endboss extends MovableObject {
         this.x = 3500;
         this.animate();
         this.energy = 100;
+        
 
     }
 
@@ -69,10 +72,19 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE);
             } else if (this.energy == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.y += 35;
+                if (!this.soundDiePlayed) {
+                    this.playSound(this.soundDie);
+                    this.soundDiePlayed = true;
+                };
             }
 
-        }, 235);
+        }, 150);
 
     };
+
+
+   
+
 
 }

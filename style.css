@@ -3,6 +3,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 32px;
     background-image: url('img/0_own_images/background-desert.png');
     background-size: cover;
     background-position: top;
@@ -14,3 +16,57 @@ canvas {
     background-color: black;
 
 }
+
+.canvas-container {
+    display: flex;
+}
+
+
+.d-none {
+    display: none;
+}
+
+
+.start-screen {
+    height: 480px;
+    width: 720px;
+    position: absolute;
+}
+
+.start-screen img {
+    height: 480px;
+    width: 720px;
+}
+
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    gap: 8px;
+}
+
+
+.btn-circle {
+    background-color: gold;
+    border: 1px solid black;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+
+.btn-circle:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+.ctrl-icon {
+    width: 32px;
+
+}
+
+
+

@@ -62,35 +62,17 @@ class World {
     }
 
 
-    /* backup checkCollisionsCharacterEnemies:
-
-    
     checkColllisionsCharacterEnemies() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !enemy.dead && !this.character.isHurt()) {
+            if (this.character.isColliding(enemy) && !enemy.dead && this.character.isAboveGround() && this.character.speedY < 0) {
+                this.playSound(this.soundChickenDie);
+                enemy.dead = true;
+            } else if (this.character.isColliding(enemy) && !enemy.dead && !this.character.isHurt()) {
                 this.character.hit(10);
                 this.healthBar.setPercentage(this.character.energy);
             }
         })
     };
-
-*/
-
-
-
-checkColllisionsCharacterEnemies() {
-    this.level.enemies.forEach((enemy) => {
-    if (this.character.isColliding(enemy) && !enemy.dead && this.character.isAboveGround() && this.character.speedY < 0) {
-        this.playSound(this.soundChickenDie);
-        enemy.dead = true;
-     } else if (this.character.isColliding(enemy) && !enemy.dead && !this.character.isHurt()) {
-            this.character.hit(10);
-            this.healthBar.setPercentage(this.character.energy);
-        }
-    })
-};
-
-
 
 
     checkColllisionsCharacterEndboss() {
@@ -111,9 +93,9 @@ checkColllisionsCharacterEnemies() {
                 this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 this.bottleBar.setPercentage(this.bottleBar.percentage += 10);
 
-            }
+            };
         })
-    }
+    };
 
     checkCollisionsCharacterCoins() {
         this.level.coins.forEach((coin) => {
@@ -150,7 +132,7 @@ checkColllisionsCharacterEnemies() {
                     thrownObject.hitted = true;
                     this.playSound(this.soundBottleHitEnemy);
                     this.throwableObjects[this.throwableObjects.indexOf(thrownObject)].hitted = true;
-                    this.level.endboss[this.level.endboss.indexOf(endboss)].hit(20);                
+                    this.level.endboss[this.level.endboss.indexOf(endboss)].hit(20);
                     this.healthBarEndboss.setPercentage(endboss.energy);
                 }
             });
