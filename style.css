@@ -13,12 +13,19 @@ body {
 }
 
 canvas {
-    background-color: black;
+    background-image: url('img/0_own_images/background-desert.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+
 
 }
 
 .canvas-container {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 
@@ -40,17 +47,18 @@ canvas {
 
 
 .buttons-container {
+    position: absolute;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    gap: 8px;
+    justify-content: center;
+    gap: 24px;
+    padding-top: 8px;
 }
 
 
 .btn-circle {
     background-color: gold;
-    border: 1px solid black;
+    border: 3px solid black;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -61,6 +69,7 @@ canvas {
 .btn-circle:hover {
     cursor: pointer;
     scale: 1.05;
+    background-color: whitesmoke;
 }
 
 .ctrl-icon {

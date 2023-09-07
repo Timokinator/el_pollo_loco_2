@@ -32,17 +32,17 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body>
 
     <h1>El Pollo Loco</h1>
 
-    <div class="canvas-container">
+    <div id="canvas_container" class="canvas-container">
 
-        <div class="start-screen d-none">
-            <img src="img/9_intro_outro_screens/start/startscreen_2.png" alt="">
+        <div id="start_screen" class="start-screen">
+            <img id="img_start_screen" src="img/9_intro_outro_screens/start/startscreen_2.png" alt="">
         </div>
-        <div class="buttons-container">
-            <div class="btn-circle">
+        <div id="buttons_container" class="buttons-container">
+            <div id="btn_start" onclick="start()" class="btn-circle">
                 <img class="ctrl-icon" src="icons/play_arrow.svg" alt="">
             </div>
 
@@ -54,12 +54,12 @@
                 <img class="ctrl-icon" src="icons/help.svg" alt="">
             </div>
 
-            <div class="btn-circle">
-                <img class="ctrl-icon" src="icons/volume_off.svg" alt="">
+            <div id="btn_sound" onclick="toggleSound()" class="btn-circle">
+                <img id="img_btn_sound" class="ctrl-icon" src="icons/volume_on.svg" alt="">
             </div>
 
-            <div class="btn-circle">
-                <img class="ctrl-icon" src="icons/open_fullscreen.svg" alt="">
+            <div class="btn-circle" onclick="toggleFullscreen()">
+                <img id="btn-fullscreen" class="ctrl-icon" src="icons/open_fullscreen.svg" alt="">
             </div>
 
           
@@ -78,7 +78,11 @@
 
         <div class="game-over"></div>
 
-        <canvas id="canvas" width="720px" height="480px"></canvas>
+
+
+        <canvas id="canvas" width="720px" height="480px">
+                        
+        </canvas>
 
 
 
