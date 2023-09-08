@@ -30,7 +30,7 @@ canvas {
 
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 
@@ -78,4 +78,57 @@ canvas {
 }
 
 
+.container-controls, .container-info {
+    position: absolute;
+    top: 70px;
+    height: 300px;
+    width: 275px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid white;
+    border-radius: 15px;
+    background-color: rgb(234, 188, 118);
+    padding: 16px 100px;
+    opacity: 90%;
 
+}
+
+.container-info {
+    justify-content: flex-start;
+    padding: 16px;
+    width: 443px;
+}
+
+.container-info p {
+    font-size: 20px;
+}
+
+
+
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: 64px;
+}
+
+.controls-row p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.img-ctrl {
+    width: 56px;
+
+}
+
+.ctrl-headline, .info-headline {
+    font-size: 32px !important;
+    font-weight: bold;
+    margin: 0;
+    text-decoration: underline;
+}

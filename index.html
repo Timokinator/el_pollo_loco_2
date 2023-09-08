@@ -46,13 +46,51 @@
                 <img class="ctrl-icon" src="icons/play_arrow.svg" alt="">
             </div>
 
-            <div class="btn-circle">
+            <div onclick="toggleControls()" class="btn-circle">
                 <img class="ctrl-icon" src="icons/joystick.svg" alt="">
             </div>
 
-            <div class="btn-circle">
+            <div id="container_controls" class="container-controls d-none">
+                <p class="ctrl-headline">Controls:</p>
+                <div class="controls-row">
+                    <p>Move left:</p>
+                    <img class="img-ctrl" src="icons/arrow_circle_left.svg" alt="">
+                </div>
+
+                <div class="controls-row">
+                    <p>Move right:</p>
+                    <img class="img-ctrl" src="icons/arrow_circle_right.svg" alt="">
+                </div>
+
+                <div class="controls-row">
+                    <p>Jump:</p>
+                    <img src="icons/space.png" alt="">
+                </div>
+
+                <div class="controls-row">
+                    <p>Throw bottle:</p>
+                    <img src="icons/d.png" alt="">
+                </div>
+
+            </div>
+
+            <div onclick="toggleInfo()" class="btn-circle">
                 <img class="ctrl-icon" src="icons/help.svg" alt="">
             </div>
+
+            <div id="container_info" class="container-info d-none">
+                <p class="info-headline">WTF is happening?</p>
+                <p>
+                    Im verschlafenen Dorf "Picos Picantes" verwandelt eine mysteriöse Hot-Sauce-Mutation Hühner in
+                    gefährliche Wesen. Pepe Peligroso, ein mexikanischer Tabasco-Enthusiast, eilt zur Rettung. In seinem
+                    scharfen Abenteuer sammelt er Tabasco-Flaschen, wirft sie auf mutierte Hühner und sammelt Münzen.
+                    Sein Ziel: der epische Showdown mit einem gigantischen Hühnerboss. Pepe, der scharfzüngige Held,
+                    muss das Dorf retten und die scharfe Soße vor der Vernichtung bewahren.
+                </p>
+            </div>
+
+
+
 
             <div id="btn_sound" onclick="toggleSound()" class="btn-circle">
                 <img id="img_btn_sound" class="ctrl-icon" src="icons/volume_on.svg" alt="">
@@ -62,17 +100,11 @@
                 <img id="btn-fullscreen" class="ctrl-icon" src="icons/open_fullscreen.svg" alt="">
             </div>
 
-          
+
 
 
         </div>
 
-
-
-        <div class="controls"></div>
-
-
-        <div class="info-text"></div>
 
 
 
@@ -81,7 +113,7 @@
 
 
         <canvas id="canvas" width="720px" height="480px">
-                        
+
         </canvas>
 
 

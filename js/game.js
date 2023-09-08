@@ -11,6 +11,8 @@ function start() {
     canvas = document.getElementById('canvas');
     document.getElementById('start_screen').classList.add('d-none');
     document.getElementById('btn_start').style.display = 'none';
+    document.getElementById('container_controls').classList.add('d-none');
+    document.getElementById('container_info').classList.add('d-none');
 
     world = new World(canvas, keyboard);
 
@@ -66,11 +68,21 @@ function volumeOn() {
 
 
 function volumeOff() {
-    
-
     document.getElementById('img_btn_sound').src = 'icons/volume_off.svg';
     soundOn = false;
-}
+};
+
+
+function toggleControls() {
+    document.getElementById('container_info').classList.add('d-none');
+    document.getElementById('container_controls').classList.toggle('d-none')
+};
+
+
+function toggleInfo() {
+    document.getElementById('container_controls').classList.add('d-none')
+    document.getElementById('container_info').classList.toggle('d-none');
+};
 
 
 
