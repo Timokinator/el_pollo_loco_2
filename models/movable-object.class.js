@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     acceleration = 3;
     energy = 100;
 
+    gameRunning = true;
+
     lastHit = 0;
 
     offset = {
@@ -48,9 +50,11 @@ class MovableObject extends DrawableObject {
 
 
     moveRight() {
+        
+
         this.x += this.speed;
         this.otherDirection = false;
-    }
+    };
 
 
     moveLeft() {
@@ -85,19 +89,6 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path]
         this.currentImage++;
     }
-
-
-    //backup isColliding:
-
-    //isColliding(obj) {
-    //  return (
-    //    this.x + this.width) >= obj.x &&
-    //  this.x <= (obj.x + obj.width) &&
-    //  (this.y + /*this.offsetY */ + this.height) >= obj.y &&
-    // (this.y/* + this.offsetY*/) <= (obj.y + obj.height) /*&&
-    //     obj.onCollisionCourse; */
-    // }
-
 
 
     isColliding(obj) {
@@ -135,6 +126,10 @@ class MovableObject extends DrawableObject {
         sound.play();
     }
 
+
+    stopRunningGame() {
+        this.gameRunning = false;
+    }
 
 
 

@@ -9,6 +9,7 @@
 
     <title>El Pollo Loco</title>
 
+    <script src="js/sounds.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/bottle.class.js"></script>
@@ -53,22 +54,22 @@
             <div id="container_controls" class="container-controls d-none">
                 <p class="ctrl-headline">Controls:</p>
                 <div class="controls-row">
-                    <p>Move left:</p>
+                    <p>Nach Links laufen:</p>
                     <img class="img-ctrl" src="icons/arrow_circle_left.svg" alt="">
                 </div>
 
                 <div class="controls-row">
-                    <p>Move right:</p>
+                    <p>Nach Rechts laufen:</p>
                     <img class="img-ctrl" src="icons/arrow_circle_right.svg" alt="">
                 </div>
 
                 <div class="controls-row">
-                    <p>Jump:</p>
+                    <p>Hüpfen:</p>
                     <img src="icons/space.png" alt="">
                 </div>
 
                 <div class="controls-row">
-                    <p>Throw bottle:</p>
+                    <p>Flasche werfen:</p>
                     <img src="icons/d.png" alt="">
                 </div>
 
@@ -108,7 +109,32 @@
 
 
 
-        <div class="game-over"></div>
+        <div id="game_over" class="game-over d-none">
+            <img class="img-game-over" src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
+            <div onclick="restartGame()" class="btn-circle btn-restart">
+                RESTART
+                <img class="ctrl-icon" src="icons/icon-restart.svg" alt="">
+            </div>
+
+        </div>
+
+
+        <div id="div_winner" class="game-over d-none">
+            <span class="text_ganado">¡Ganado!</span>
+            <span class="text_ganado">Du hast das böse Hühnchen besiegt</span>
+            
+            <div onclick="restartGame()" class="btn-circle btn-restart-win">
+                RESTART
+                <img class="ctrl-icon" src="icons/icon-restart.svg" alt="">
+            </div>
+
+        </div>
+
+
+
+
+
+
 
 
 

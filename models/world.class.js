@@ -15,22 +15,23 @@ class World {
     collectedCoins = 0;
     offset;
     firstContact = false;
+    gameRunning = true;
 
-    soundCoinCollect = new Audio('audio/coin.mp3');
-    soundBottleCollect = new Audio('audio/bottleCollect.mp3');
-    soundBottleHitEnemy = new Audio('audio/bottleSplat1.mp3');
-    soundChickenDie = new Audio('audio/chicken_die.mp3');
-
-
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.soundBottleCollect.playbackRate = 1.3;
         this.draw();
         this.setWorld();
         this.run();
+        this.soundCoinCollect = soundCoinCollect;
+        this.soundBottleCollect = soundBottleCollect;
+        this.soundBottleHitEnemy = soundBottleHitEnemy;
+        this.soundChickenDie = soundChickenDie;
+        this.soundBottleCollect.playbackRate = 1.3;
+
     }
 
 
@@ -48,16 +49,17 @@ class World {
             this.checkCollisionsBottlesEnemies();
             this.checkCollisionsBottlesEndboss();
             this.checkThrowObjects();
-
+            this.checkEndbossAlive();
 
         }, 100);
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.collectedBottles > 0) {
+        if (this.keyboard.D && this.collectedBottles > 0 && this.character.gameRunning) {
             let bottle = new ThrowableObject(this.character.x + 25, this.character.y + 25);
             this.throwableObjects.push(bottle);
             this.collectedBottles -= 1;
+            this.bottleBar.setPercentage(this.bottleBar.percentage -= 10);
         }
     }
 
@@ -109,8 +111,6 @@ class World {
     }
 
 
-    // in progress:
-
     checkCollisionsBottlesEnemies() {
         this.throwableObjects.forEach((thrownObject) => {
             this.level.enemies.forEach((enemy) => {
@@ -139,6 +139,17 @@ class World {
         })
     };
 
+
+    checkEndbossAlive() {
+        this.level.endboss.forEach((endboss) => {
+            if (endboss.energy <= 0) {
+                this.character.gameRunning = false;
+                this.level.enemies.forEach((enemy) => {
+                    enemy.dead = true;
+                });
+            };
+        });
+    };
 
 
 

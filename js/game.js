@@ -2,19 +2,20 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let fullscreen = false;
-let soundOn = true;
 
 
 
 
 function start() {
     canvas = document.getElementById('canvas');
-    document.getElementById('start_screen').classList.add('d-none');
-    document.getElementById('btn_start').style.display = 'none';
-    document.getElementById('container_controls').classList.add('d-none');
-    document.getElementById('container_info').classList.add('d-none');
-
+    initLevel();
     world = new World(canvas, keyboard);
+    setTimeout(() => {
+        document.getElementById('start_screen').classList.add('d-none');
+        document.getElementById('btn_start').style.display = 'none';
+        document.getElementById('container_controls').classList.add('d-none');
+        document.getElementById('container_info').classList.add('d-none');
+    }, 35);
 
 }
 
@@ -34,6 +35,10 @@ function endFullscreen() {
     document.getElementById('start_screen').style.width = 'unset';
     document.getElementById('img_start_screen').style.width = '720px';
     document.getElementById('img_start_screen').style.height = '480px';
+    document.getElementById('game_over').style.width = '720px';
+    document.getElementById('game_over').style.height = '480px';
+    document.getElementById('div_winner').style.width = '720px';
+    document.getElementById('div_winner').style.height = '480px';
     document.getElementById('canvas').style.width = 'unset';
     document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
     fullscreen = false;
@@ -46,31 +51,37 @@ function startFullscreen() {
     document.getElementById('start_screen').style.width = '100vw';
     document.getElementById('img_start_screen').style.width = '100vw';
     document.getElementById('img_start_screen').style.height = 'calc(100vw/720 * 480)';
+    document.getElementById('game_over').style.width = '100vw';
+    document.getElementById('game_over').style.height = 'calc(100vw/720 * 480)';
+    document.getElementById('div_winner').style.width = '100vw';
+    document.getElementById('div_winner').style.height = 'calc(100vw/720 * 480)';
     document.getElementById('canvas').style.width = '100vw';
     document.getElementById('btn-fullscreen').src = 'icons/close_fullscreen.svg';
     fullscreen = true;
 }
 
+function gameOver() {
+    document.getElementById('game_over').classList.remove('d-none');
+    setTimeout(() => {
+        soundGameOver.play()
+    }, 1500);
+}
 
-function toggleSound() {
-    if (!soundOn) {
-        volumeOn();
-    } else {
-        volumeOff();
-    }
+function winnerChickenDinner() {
+
+    setTimeout(() => {
+        document.getElementById('div_winner').classList.remove('d-none');
+        soundWin.play()
+    }, 1500);
+
 }
 
 
-function volumeOn() {
-    document.getElementById('img_btn_sound').src = 'icons/volume_on.svg';
-    soundOn = true;
+
+function restartGame() {
+    //start();
+    location.reload();
 }
-
-
-function volumeOff() {
-    document.getElementById('img_btn_sound').src = 'icons/volume_off.svg';
-    soundOn = false;
-};
 
 
 function toggleControls() {

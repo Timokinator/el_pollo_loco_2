@@ -45,9 +45,9 @@ class Endboss extends MovableObject {
         bottom: 15
     };
 
-    soundDie = new Audio('audio/endboss_die.mp3');
+    
     soundDiePlayed = false;
-
+    world;
 
 
 
@@ -60,6 +60,7 @@ class Endboss extends MovableObject {
         this.x = 3500;
         this.animate();
         this.energy = 100;
+        this.soundDieEndboss = soundDieEndboss;
         
 
     }
@@ -74,7 +75,9 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.y += 35;
                 if (!this.soundDiePlayed) {
-                    this.playSound(this.soundDie);
+                    this.playSound(this.soundDieEndboss);
+                    winnerChickenDinner();
+                    this.stopRunningGame();
                     this.soundDiePlayed = true;
                 };
             }
