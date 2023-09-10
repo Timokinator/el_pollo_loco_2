@@ -26,6 +26,8 @@ canvas {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: 480px;
+    width: 720px;
 }
 
 
@@ -123,6 +125,8 @@ canvas {
 
 .img-ctrl {
     width: 56px;
+    height: 56px;
+    margin-right: -3px;
 
 }
 
@@ -170,4 +174,40 @@ canvas {
     text-align: center;
 }
 
+
+.container-mobile-control {
+    position: relative;
+    bottom: 64px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-control-left, .mobile-control-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+
+
+.btn-ctrl {
+    background-color: gold;
+    border-radius: 100%;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    opacity: 40%
+}
+
+.btn-ctrl:hover {
+    cursor: pointer;
+    scale: 1.01;
+}
+
+.btn-ctrl:active {
+    opacity: 100%;
+}
 

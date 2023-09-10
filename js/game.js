@@ -121,8 +121,6 @@ window.addEventListener('keydown', (e) => { // Junus hat "keypress" - falls spä
     if (e.keyCode == 68) {
         keyboard.D = true;
     }
-
-
 });
 
 
@@ -150,9 +148,28 @@ window.addEventListener('keyup', (e) => { // Junus hat "keypress" - falls späte
     if (e.keyCode == 68) {
         keyboard.D = false;
     }
-
-
 });
 
+
+function touchClickStart(btn) {
+    if (btn == 'LEFT') {
+        keyboard.LEFT = true;
+    }
+
+
+
+
+
+}
+
+
+function touchClickEnd(btn) {
+    if (btn == "LEFT") {
+        keyboard.LEFT = false;
+    }
+
+
+
+}
 
 
