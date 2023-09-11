@@ -35,7 +35,7 @@
 
 <body>
 
-    <h1>El Pollo Loco</h1>
+    <h1 id="heading_start">El Pollo Loco</h1>
 
     <div id="canvas_container" class="canvas-container">
 
@@ -122,7 +122,7 @@
         <div id="div_winner" class="game-over d-none">
             <span class="text_ganado">¡Ganado!</span>
             <span class="text_ganado">Du hast das böse Hühnchen besiegt</span>
-            
+
             <div onclick="restartGame()" class="btn-circle btn-restart-win">
                 RESTART
                 <img class="ctrl-icon" src="icons/icon-restart.svg" alt="">
@@ -137,16 +137,17 @@
 
         <div class="container-mobile-control">
             <div class="mobile-control-left">
-                <img onmousedown="touchClickStart('LEFT')" onmouseup="touchClickEnd('LEFT')" class="img-ctrl btn-ctrl" src="icons/arrow_circle_left.svg" alt="">
-                <img class="img-ctrl btn-ctrl" src="icons/arrow_circle_right.svg" alt="">
-
+                <img onmousedown="touchClickStart('LEFT')" onmouseup="touchClickEnd('LEFT')" class="img-ctrl btn-ctrl"
+                    src="icons/arrow_circle_left.svg" alt="">
+                <img onmousedown="touchClickStart('RIGHT')" onmouseup="touchClickEnd('RIGHT')" class="img-ctrl btn-ctrl"
+                    src="icons/arrow_circle_right.svg" alt="">
             </div>
 
             <div class="mobile-control-right">
-
-                <img class="img-ctrl btn-ctrl" src="icons/icon_bottle.svg" alt="">
-                <img class="img-ctrl btn-ctrl" src="icons/arrow_circle_up.svg" alt="">
-
+                <img onmousedown="touchClickStart('D')" onmouseup="touchClickEnd('D')" class="img-ctrl btn-ctrl"
+                    src="icons/icon_bottle.svg" alt="">
+                <img onmousedown="touchClickStart('SPACE')" onmouseup="touchClickEnd('SPACE')" class="img-ctrl btn-ctrl"
+                    src="icons/arrow_circle_up.svg" alt="">
             </div>
 
         </div>

@@ -5,7 +5,6 @@ let fullscreen = false;
 
 
 
-
 function start() {
     canvas = document.getElementById('canvas');
     initLevel();
@@ -32,6 +31,7 @@ function toggleFullscreen() {
 
 function endFullscreen() {
     document.getElementById('canvas_container').style.width = 'unset';
+    document.getElementById('canvas_container').style.height = 'unset';
     document.getElementById('start_screen').style.width = 'unset';
     document.getElementById('img_start_screen').style.width = '720px';
     document.getElementById('img_start_screen').style.height = '480px';
@@ -41,13 +41,14 @@ function endFullscreen() {
     document.getElementById('div_winner').style.height = '480px';
     document.getElementById('canvas').style.width = 'unset';
     document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
+    document.getElementById('heading_start').classList.remove('d-none');
     fullscreen = false;
-
 }
 
 
 function startFullscreen() {
     document.getElementById('canvas_container').style.width = '100vw';
+    document.getElementById('canvas_container').style.height = 'auto';
     document.getElementById('start_screen').style.width = '100vw';
     document.getElementById('img_start_screen').style.width = '100vw';
     document.getElementById('img_start_screen').style.height = 'calc(100vw/720 * 480)';
@@ -57,8 +58,10 @@ function startFullscreen() {
     document.getElementById('div_winner').style.height = 'calc(100vw/720 * 480)';
     document.getElementById('canvas').style.width = '100vw';
     document.getElementById('btn-fullscreen').src = 'icons/close_fullscreen.svg';
+    document.getElementById('heading_start').classList.add('d-none');
     fullscreen = true;
 }
+
 
 function gameOver() {
     document.getElementById('game_over').classList.remove('d-none');
@@ -67,13 +70,12 @@ function gameOver() {
     }, 1500);
 }
 
-function winnerChickenDinner() {
 
+function winnerChickenDinner() {
     setTimeout(() => {
         document.getElementById('div_winner').classList.remove('d-none');
         soundWin.play()
     }, 1500);
-
 }
 
 
@@ -156,19 +158,53 @@ function touchClickStart(btn) {
         keyboard.LEFT = true;
     }
 
+    if (btn == 'RIGHT') {
+        keyboard.RIGHT = true;
+    }
 
+    if (btn == 'UP') {
+        keyboard.UP = true;
+    }
 
+    if (btn == 'DOWN') {
+        keyboard.DOWN = true;
+    }
 
+    if (btn == 'SPACE') {
+        keyboard.SPACE = true;
+    }
+
+    if (btn == 'D') {
+        keyboard.D = true;
+    }
 
 }
 
 
 function touchClickEnd(btn) {
-    if (btn == "LEFT") {
+    if (btn == 'LEFT') {
         keyboard.LEFT = false;
     }
 
+    if (btn == 'RIGHT') {
+        keyboard.RIGHT = false;
+    }
 
+    if (btn == 'UP') {
+        keyboard.UP = false;
+    }
+
+    if (btn == 'DOWN') {
+        keyboard.DOWN = false;
+    }
+
+    if (btn == 'SPACE') {
+        keyboard.SPACE = false;
+    }
+
+    if (btn == 'D') {
+        keyboard.D = false;
+    }
 
 }
 
