@@ -14,6 +14,7 @@ function start() {
         document.getElementById('btn_start').style.display = 'none';
         document.getElementById('container_controls').classList.add('d-none');
         document.getElementById('container_info').classList.add('d-none');
+        startTouchListener();
     }, 35);
 
 }
@@ -30,8 +31,8 @@ function toggleFullscreen() {
 
 
 function endFullscreen() {
-    document.getElementById('canvas_container').style.width = 'unset';
-    document.getElementById('canvas_container').style.height = 'unset';
+    document.getElementById('canvas_container').style.width = '720px'; //unset
+    document.getElementById('canvas_container').style.height = '480px'; //unset
     document.getElementById('start_screen').style.width = 'unset';
     document.getElementById('img_start_screen').style.width = '720px';
     document.getElementById('img_start_screen').style.height = '480px';
@@ -39,7 +40,7 @@ function endFullscreen() {
     document.getElementById('game_over').style.height = '480px';
     document.getElementById('div_winner').style.width = '720px';
     document.getElementById('div_winner').style.height = '480px';
-    document.getElementById('canvas').style.width = 'unset';
+    document.getElementById('canvas').style.width = '720px'; //unset
     document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
     document.getElementById('heading_start').classList.remove('d-none');
     fullscreen = false;
@@ -153,59 +154,65 @@ window.addEventListener('keyup', (e) => { // Junus hat "keypress" - falls späte
 });
 
 
-function touchClickStart(btn) {
-    if (btn == 'LEFT') {
+
+function startTouchListener() {
+    addListenerLeft();
+    addListenerRight();
+    addListenerJump();
+    addListenerBottle();
+};
+
+
+function addListenerLeft() {
+    document.getElementById('btn_mobile_left').addEventListener('touchstart', (e) => {
+        e.preventDefault();
         keyboard.LEFT = true;
-    }
+    });
 
-    if (btn == 'RIGHT') {
-        keyboard.RIGHT = true;
-    }
-
-    if (btn == 'UP') {
-        keyboard.UP = true;
-    }
-
-    if (btn == 'DOWN') {
-        keyboard.DOWN = true;
-    }
-
-    if (btn == 'SPACE') {
-        keyboard.SPACE = true;
-    }
-
-    if (btn == 'D') {
-        keyboard.D = true;
-    }
-
-}
-
-
-function touchClickEnd(btn) {
-    if (btn == 'LEFT') {
+    document.getElementById('btn_mobile_left').addEventListener('touchend', (e) => {
+        e.preventDefault();
         keyboard.LEFT = false;
-    }
+    });
+};
 
-    if (btn == 'RIGHT') {
+
+function addListenerRight() {
+    document.getElementById('btn_mobile_right').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('btn_mobile_right').addEventListener('touchend', (e) => {
+        e.preventDefault();
         keyboard.RIGHT = false;
-    }
+    });
+};
 
-    if (btn == 'UP') {
-        keyboard.UP = false;
-    }
 
-    if (btn == 'DOWN') {
-        keyboard.DOWN = false;
-    }
+function addListenerJump() {
+    document.getElementById('btn_mobile_jump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
 
-    if (btn == 'SPACE') {
+    document.getElementById('btn_mobile_jump').addEventListener('touchend', (e) => {
+        e.preventDefault();
         keyboard.SPACE = false;
-    }
+    });
+};
 
-    if (btn == 'D') {
+
+function addListenerBottle() {
+    document.getElementById('btn_mobile_bottle').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+
+    document.getElementById('btn_mobile_bottle').addEventListener('touchend', (e) => {
+        e.preventDefault();
         keyboard.D = false;
-    }
+    });
+};
 
-}
 
 

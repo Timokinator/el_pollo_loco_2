@@ -17,6 +17,10 @@ canvas {
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
+    width: 720px;
+    height: auto;
+    max-height: 100vh;
+ 
 
 
 }
@@ -28,6 +32,8 @@ canvas {
     align-items: center;
     height: 480px;
     width: 720px;
+    margin-bottom: -15px;
+    max-height: 100vh;
 }
 
 
@@ -40,11 +46,13 @@ canvas {
     height: 480px;
     width: 720px;
     position: absolute;
+    max-height: 100vh;
 }
 
 .start-screen img {
     height: 480px;
     width: 720px;
+    max-height: 100vh;
 }
 
 
@@ -146,6 +154,9 @@ canvas {
     align-items: center;
     justify-content: center;
     gap: 32px;
+    max-width: 100vh;
+    background-color: rgba(2, 179, 64, 0.819);
+    border-radius: 35%; 
 }
 
 
@@ -153,6 +164,7 @@ canvas {
     width: 100%;
     height: 100%;
     position: absolute;
+    border-radius: 35%;
 }
 
 .btn-restart {
@@ -211,3 +223,63 @@ canvas {
     opacity: 100%;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsiveness Smartphone */
+
+
+
+
+
+@media only screen and (max-width: 720px) {
+    .canvas-container, .start-screen, canvas, .img-start-screen, .start-screen img, .game-over, .img-game-over {
+        width: 100vw;
+        height: 100%;
+    }
+
+    .buttons-container {
+        scale: 0.8;
+    }
+
+  
+
+
+
+}
+
+
+@media only screen and (max-height: 480px) {
+    .canvas-container, .start-screen, canvas, .img-start-screen, .start-screen img, .game-over, .img-game-over {
+        height: 100%;
+        width: 100%;
+    }
+
+    .text_ganado {
+        font-size: 24px;
+    }
+
+
+
+
+}
+
+
+
+
+@media only screen and (max-height: 800px) and (max-width: 1200px) {
+    .heading-start {
+        display: none;
+    }
+
+
+}

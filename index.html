@@ -35,12 +35,12 @@
 
 <body>
 
-    <h1 id="heading_start">El Pollo Loco</h1>
+    <h1 class="heading-start" id="heading_start">El Pollo Loco</h1>
 
     <div id="canvas_container" class="canvas-container">
 
         <div id="start_screen" class="start-screen">
-            <img id="img_start_screen" src="img/9_intro_outro_screens/start/startscreen_2.png" alt="">
+            <img id="img_start_screen" class="img-start-screen" src="img/9_intro_outro_screens/start/startscreen_2.png" alt="">
         </div>
         <div id="buttons_container" class="buttons-container">
             <div id="btn_start" onclick="start()" class="btn-circle">
@@ -137,17 +137,13 @@
 
         <div class="container-mobile-control">
             <div class="mobile-control-left">
-                <img onmousedown="touchClickStart('LEFT')" onmouseup="touchClickEnd('LEFT')" class="img-ctrl btn-ctrl"
-                    src="icons/arrow_circle_left.svg" alt="">
-                <img onmousedown="touchClickStart('RIGHT')" onmouseup="touchClickEnd('RIGHT')" class="img-ctrl btn-ctrl"
-                    src="icons/arrow_circle_right.svg" alt="">
+                <img id="btn_mobile_left" class="img-ctrl btn-ctrl" src="icons/arrow_circle_left.svg" alt="">
+                <img id="btn_mobile_right" class="img-ctrl btn-ctrl" src="icons/arrow_circle_right.svg" alt="">
             </div>
 
             <div class="mobile-control-right">
-                <img onmousedown="touchClickStart('D')" onmouseup="touchClickEnd('D')" class="img-ctrl btn-ctrl"
-                    src="icons/icon_bottle.svg" alt="">
-                <img onmousedown="touchClickStart('SPACE')" onmouseup="touchClickEnd('SPACE')" class="img-ctrl btn-ctrl"
-                    src="icons/arrow_circle_up.svg" alt="">
+                <img id="btn_mobile_bottle" class="img-ctrl btn-ctrl" src="icons/icon_bottle.svg" alt="">
+                <img id="btn_mobile_jump" class="img-ctrl btn-ctrl" src="icons/arrow_circle_up.svg" alt="">
             </div>
 
         </div>
