@@ -6,7 +6,6 @@ class HealthBarEndbossIcon extends DrawableObject {
 
     otherDirection = true;
 
-
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -15,8 +14,5 @@ class HealthBarEndbossIcon extends DrawableObject {
         this.height = 60;
         this.width = 60;
         this.img = this.imageCache['img/7_statusbars/3_icons/icon_health_endboss.png'];
-
-    }
-
-
-}
+    };
+};

@@ -4,7 +4,6 @@ let keyboard = new Keyboard();
 let fullscreen = false;
 
 
-
 function start() {
     canvas = document.getElementById('canvas');
     initLevel();
@@ -16,9 +15,7 @@ function start() {
         document.getElementById('container_info').classList.add('d-none');
         startTouchListener();
     }, 35);
-
-}
-
+};
 
 
 function toggleFullscreen() {
@@ -27,7 +24,7 @@ function toggleFullscreen() {
     } else {
         endFullscreen();
     };
-}
+};
 
 
 function endFullscreen() {
@@ -44,7 +41,7 @@ function endFullscreen() {
     document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
     document.getElementById('heading_start').classList.remove('d-none');
     fullscreen = false;
-}
+};
 
 
 function startFullscreen() {
@@ -61,7 +58,7 @@ function startFullscreen() {
     document.getElementById('btn-fullscreen').src = 'icons/close_fullscreen.svg';
     document.getElementById('heading_start').classList.add('d-none');
     fullscreen = true;
-}
+};
 
 
 function gameOver() {
@@ -69,7 +66,7 @@ function gameOver() {
     setTimeout(() => {
         soundGameOver.play()
     }, 1500);
-}
+};
 
 
 function winnerChickenDinner() {
@@ -77,14 +74,12 @@ function winnerChickenDinner() {
         document.getElementById('div_winner').classList.remove('d-none');
         soundWin.play()
     }, 1500);
-}
-
+};
 
 
 function restartGame() {
-    //start();
     location.reload();
-}
+};
 
 
 function toggleControls() {
@@ -97,7 +92,6 @@ function toggleInfo() {
     document.getElementById('container_controls').classList.add('d-none')
     document.getElementById('container_info').classList.toggle('d-none');
 };
-
 
 
 window.addEventListener('keydown', (e) => { // Junus hat "keypress" - falls später Probleme auftauchen
@@ -152,7 +146,6 @@ window.addEventListener('keyup', (e) => { // Junus hat "keypress" - falls späte
         keyboard.D = false;
     }
 });
-
 
 
 function startTouchListener() {

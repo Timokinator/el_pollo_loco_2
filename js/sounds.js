@@ -9,10 +9,11 @@ let soundBottleHitEnemy = new Audio('audio/bottleSplat1.mp3');
 let soundChickenDie = new Audio('audio/chicken_die.mp3');
 let soundGameOver = new Audio('audio/game_over.mp3');
 let soundWin = new Audio('audio/Game_win.mp3');
+let soundPepeHurt = new Audio('audio/pepe_hurt.mp3');
 
 let soundOn = true;
 
-let allSounds = [walking_sound, jumping_sound, soundDiePepe, soundCollect, soundDieEndboss, soundCoinCollect, soundBottleCollect, soundBottleHitEnemy, soundChickenDie, soundGameOver, soundWin];
+let allSounds = [walking_sound, jumping_sound, soundDiePepe, soundCollect, soundDieEndboss, soundCoinCollect, soundBottleCollect, soundBottleHitEnemy, soundChickenDie, soundGameOver, soundWin, soundPepeHurt];
 
 
 function toggleMuteAllSounds() {
@@ -34,17 +35,16 @@ function toggleSound() {
         volumeOff();
     }
     toggleMuteAllSounds();
-}
+};
+
 
 function volumeOn() {
     document.getElementById('img_btn_sound').src = 'icons/volume_on.svg';
     soundOn = true;
-}
+};
+
 
 function volumeOff() {
     document.getElementById('img_btn_sound').src = 'icons/volume_off.svg';
     soundOn = false;
 };
-
-
-

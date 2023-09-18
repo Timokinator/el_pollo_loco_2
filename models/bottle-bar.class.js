@@ -18,9 +18,8 @@ class BottleBar extends DrawableObject {
         this.y = 45;
         this.height = 158/3;
         this.width = 595/3;
-
         this.setPercentage(this.percentage);
-    }
+    };
 
 
     setPercentage(percentage) {
@@ -46,5 +45,4 @@ class BottleBar extends DrawableObject {
             return 0;
         }
     };
-
-}
+};
