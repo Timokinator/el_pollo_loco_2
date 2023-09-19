@@ -1,5 +1,13 @@
+/**
+ * Eine Klasse, die eine Flaschenanzeige in der Benutzeroberfläche des Spiels repräsentiert.
+ * Erbt von der Klasse DrawableObject und stellt ein zeichnbares Objekt dar.
+ */
 class BottleBar extends DrawableObject {
 
+    /**
+     * Ein Array mit Pfaden zu den Bildern für die Flaschenanzeige bei verschiedenen Prozentsätzen.
+     * @type {string[]}
+     */
     IMAGES = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
@@ -9,8 +17,17 @@ class BottleBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
     ];
 
+
+    /**
+     * Der aktuelle Prozentsatz der Flaschenanzeige.
+     * @type {number}
+     */
     percentage = 10;
 
+    
+    /**
+     * Erstellt eine neue Flaschenanzeige.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -22,14 +39,21 @@ class BottleBar extends DrawableObject {
     };
 
 
+    /**
+     * Setzt den aktuellen Prozentsatz der Flaschenanzeige und aktualisiert das angezeigte Bild.
+     * @param {number} percentage - Der Prozentsatz der Flaschenanzeige (0 bis 100).
+     */
     setPercentage(percentage) {
-        this.percentage = percentage; // => 0....5
+        this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()]
         this.img = this.imageCache[path];
-
     };
 
 
+    /**
+     * Ermittelt den Index des Bilds für die Flaschenanzeige basierend auf dem Prozentsatz.
+     * @returns {number} - Der Index des Bilds im IMAGES-Array.
+     */
     resolveImageIndex() {
         if (this.percentage > 80) {
             return 5;

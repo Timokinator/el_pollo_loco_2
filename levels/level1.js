@@ -1,5 +1,13 @@
+/**
+ * Das erste Spiellevel
+ * @type {Level}
+ */
 let level1;
 
+
+/**
+ * Initialisiert das erste Spiellevel (level1) mit verschiedenen Spielobjekten wie Hühnern, Wolken, Hintergrundobjekten, Flaschen, Münzen und dem Endboss.
+ */
 function initLevel() {
     level1 = new Level(
         [

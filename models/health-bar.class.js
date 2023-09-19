@@ -1,5 +1,12 @@
+/**
+ * Eine Klasse, die die Gesundheitsleiste des Spielers darstellt.
+ */
 class HealthBar extends DrawableObject {
 
+    /**
+     * Eine Liste der Bildpfade für die Gesundheitsleiste.
+     * @type {string[]}
+     */
     IMAGES = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png',
@@ -9,8 +16,15 @@ class HealthBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png'
     ];
 
+    /**
+     * Der Prozentsatz der Gesundheit.
+     * @type {number}
+     */
     percentage = 100;
 
+    /**
+     * Der Konstruktor der `HealthBar`-Klasse.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -21,14 +35,20 @@ class HealthBar extends DrawableObject {
         this.setPercentage(this.percentage);
     };
 
-
+    /**
+     * Setzt den Prozentsatz der Gesundheit und aktualisiert das Bild entsprechend.
+     * @param {number} percentage - Der Prozentsatz der Gesundheit (0 bis 100).
+     */
     setPercentage(percentage) {
-        this.percentage = percentage; // => 0....5
-        let path = this.IMAGES[this.resolveImageIndex()]
+        this.percentage = percentage;
+        let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     };
 
-
+    /**
+     * Ermittelt den Index des Bildes basierend auf dem Prozentsatz der Gesundheit.
+     * @returns {number} - Der Index des Bildes.
+     */
     resolveImageIndex() {
         if (this.percentage > 80) {
             return 5;

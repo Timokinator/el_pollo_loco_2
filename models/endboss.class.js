@@ -1,10 +1,30 @@
+/**
+ * Eine Klasse, die den Endgegner des Spiels darstellt.
+ */
 class Endboss extends MovableObject {
 
+    /**
+     * Die Breite des Endgegners.
+     * @type {number}
+     */
     width = 400;
+
+    /**
+     * Die Höhe des Endgegners.
+     * @type {number}
+     */
     height = 400;
 
-    y = 85
+    /**
+     * Die y-Koordinate des Endgegners.
+     * @type {number}
+     */
+    y = 85;
 
+    /**
+     * Eine Liste der Bildpfade für die Laufanimation des Endgegners.
+     * @type {string[]}
+     */
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -12,6 +32,10 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
+    /**
+     * Eine Liste der Bildpfade für die Ruhezustandsanimation des Endgegners.
+     * @type {string[]}
+     */
     IMAGES_IDLE = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -23,19 +47,30 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
 
+    /**
+     * Eine Liste der Bildpfade für die Todesanimation des Endgegners.
+     * @type {string[]}
+     */
     IMAGES_DEAD = [
         'img/4_enemie_boss_chicken/5_dead/G24.png',
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
+    /**
+     * Eine Liste der Bildpfade für die Verletzungsanimation des Endgegners.
+     * @type {string[]}
+     */
     IMAGES_HURT = [
         'img/4_enemie_boss_chicken/4_hurt/G21.png',
         'img/4_enemie_boss_chicken/4_hurt/G22.png',
         'img/4_enemie_boss_chicken/4_hurt/G23.png'
     ];
 
-
+    /**
+     * Die Offset-Werte für den Rahmen um den Endgegner.
+     * @type {object}
+     */
     offset = {
         left: 10,
         right: 10,
@@ -43,9 +78,21 @@ class Endboss extends MovableObject {
         bottom: 15
     };
 
+    /**
+     * Ein Flag, das angibt, ob der Sterbesound des Endgegners bereits abgespielt wurde.
+     * @type {boolean}
+     */
     soundDiePlayed = false;
+
+    /**
+     * Eine Referenz auf die Spielwelt.
+     * @type {World}
+     */
     world;
 
+    /**
+     * Der Konstruktor der `Endboss`-Klasse.
+     */
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -58,7 +105,9 @@ class Endboss extends MovableObject {
         this.soundDieEndboss = soundDieEndboss;
     };
 
-
+    /**
+     * Startet die Animation des Endgegners.
+     */
     animate() {
         setInterval(() => {
             if (this.isHurt()) {

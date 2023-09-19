@@ -1,10 +1,43 @@
+/**
+ * Eine Klasse, die den Hauptcharakter des Spiels repräsentiert.
+ * Erbt von der Klasse MovableObject und stellt ein bewegliches Objekt dar.
+ */
 class Character extends MovableObject {
+
+    /**
+     * Die vertikale Position des Hauptcharakters auf dem Bildschirm.
+     * @type {number}
+     */
     y = 220;
+
+    /**
+     * Die Höhe des Hauptcharakters.
+     * @type {number}
+     */
     height = 240;
+
+    /**
+     * Die Breite des Hauptcharakters.
+     * @type {number}
+     */
     width = 120;
 
+    /**
+     * Die Geschwindigkeit des Hauptcharakters.
+     * @type {number}
+     */
     speed = 25;
+
+    /**
+     * Eine Zählvariable, um die Zeit ohne Bewegung zu verfolgen.
+     * @type {number}
+     */
     timeNoMove = 0;
+
+    /**
+     * Ein Array mit Pfaden zu Bildern des Hauptcharakters während des Gehens.
+     * @type {string[]}
+     */
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -14,6 +47,10 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
 
+    /**
+     * Ein Array mit Pfaden zu Bildern des Hauptcharakters während des Springens.
+     * @type {string[]}
+     */
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
@@ -26,6 +63,10 @@ class Character extends MovableObject {
         'img/2_character_pepe/3_jump/J-39.png'
     ];
 
+    /**
+     * Ein Array mit Pfaden zu Bildern des Hauptcharakters im Ruhezustand.
+     * @type {string[]}
+     */
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',
@@ -39,6 +80,10 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-10.png',
     ];
 
+    /**
+     * Ein Array mit Pfaden zu Bildern des Hauptcharakters im toten Zustand.
+     * @type {string[]}
+     */
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
         'img/2_character_pepe/5_dead/D-52.png',
@@ -49,12 +94,20 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
 
+    /**
+     * Ein Array mit Pfaden zu Bildern des Hauptcharakters im verletzten Zustand.
+     * @type {string[]}
+     */
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
 
+    /**
+     * Ein Objekt, das den Versatz (Abstand) des Hauptcharakters von den Kanten des Bildes definiert.
+     * @type {object}
+     */
     offset = {
         left: 10,
         right: 10,
@@ -62,11 +115,33 @@ class Character extends MovableObject {
         bottom: 10
     };
 
+    /**
+     * Eine Referenz auf das Spielweltobjekt.
+     * @type {World}
+     */
     world;
+
+    /**
+     * Ein Flag, das angibt, ob der Todessound bereits abgespielt wurde.
+     * @type {boolean}
+     */
     soundDiePlayed = false;
+
+    /**
+     * Ein Flag, das angibt, ob der Hauptcharakter tot ist.
+     * @type {boolean}
+     */
     dead = false;
+
+    /**
+     * Ein Flag, das angibt, ob das Spiel läuft.
+     * @type {boolean}
+     */
     gameRunning = true;
 
+    /**
+     * Erstellt eine neue Instanz des Hauptcharakters und lädt die erforderlichen Bilder.
+     */
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -80,8 +155,11 @@ class Character extends MovableObject {
         this.jumping_sound = jumping_sound;
         this.soundDiePepe = soundDiePepe;
     };
+    
 
-
+    /**
+     * Startet die Animation des Hauptcharakters, einschließlich seiner Bewegung und Zustandsänderungen.
+     */
     animate() {
         setInterval(() => {
             this.walking_sound.pause();
@@ -110,7 +188,6 @@ class Character extends MovableObject {
             };
             this.world.camera_x = -this.x + 100 //+100 von mir zugefügt
         }, 1000 / 25);
-
 
         setInterval(() => {
             if (this.isDead()) {
