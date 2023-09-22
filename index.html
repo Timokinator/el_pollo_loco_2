@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./favicon/henne.png" type="image/x-icon">
 
@@ -40,7 +40,7 @@
     <script src="js/game.js"></script>
 </head>
 
-<body>
+<body onload="playBackgroundMusic()">
 
     <h1 onclick="location.reload()" class="heading-start" id="heading_start">El Pollo Loco</h1>
 
@@ -105,7 +105,7 @@
                 <img id="img_btn_sound" class="ctrl-icon" src="icons/volume_on.svg" alt="">
             </div>
 
-            <div class="btn-circle" onclick="toggleFullscreen()">
+            <div class="btn-circle hide-on-mobile" onclick="toggleFullscreen()">
                 <img id="btn-fullscreen" class="ctrl-icon" src="icons/open_fullscreen.svg" alt="">
             </div>
 
@@ -159,6 +159,13 @@
 
 
     </div>
+
+
+    <div class="rotate-device">
+        <img src="icons/screen_rotation.svg" alt="">
+        <span>Rotate your device</span>
+    </div>
+
 
 
 </body>

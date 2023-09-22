@@ -90,6 +90,7 @@ class Endboss extends MovableObject {
      */
     world;
 
+
     /**
      * Der Konstruktor der `Endboss`-Klasse.
      */
@@ -103,6 +104,9 @@ class Endboss extends MovableObject {
         this.animate();
         this.energy = 100;
         this.soundDieEndboss = soundDieEndboss;
+        this.firstContact = false;
+        this.gotHit = false;
+
     };
 
     /**
@@ -112,18 +116,27 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.energy > 0) {
+            } else if (this.energy > 0 && !this.gotHit) {
                 this.playAnimation(this.IMAGES_IDLE);
             } else if (this.energy == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.y += 35;
                 if (!this.soundDiePlayed) {
-                    this.playSound(this.soundDieEndboss);
-                    winnerChickenDinner();
-                    this.stopRunningGame();
-                    this.soundDiePlayed = true;
+                    this.playSoundDie();
                 };
+            } else if (this.firstContact) {
+                this.playAnimation(this.IMAGES_WALKING)
+                this.x -= 20;
             };
         }, 150);
     };
+
+
+    playSoundDie() {
+        this.playSound(this.soundDieEndboss);
+        winnerChickenDinner();
+        this.stopRunningGame();
+        this.soundDiePlayed = true;
+    };
+
 };

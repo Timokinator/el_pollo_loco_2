@@ -37,6 +37,7 @@ function start() {
         document.getElementById('container_info').classList.add('d-none');
         startTouchListener();
     }, 35);
+    backgroundMusic.volume = 0.2;
 };
 
 

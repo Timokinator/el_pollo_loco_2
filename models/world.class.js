@@ -80,6 +80,10 @@ class World {
      */
     collectedBottles = 1;
 
+
+    bottleThrowPaused = false;
+
+
     /**
      * Die Anzahl der gesammelten Münzen.
      * @type {number}
@@ -197,6 +201,7 @@ class World {
             checkCollisionsCharacterCoins(this);
             checkCollisionsBottlesEnemies(this);
             checkCollisionsBottlesEndboss(this);
+            this.checkFirstContact();
             this.checkEndbossAlive();
         }, 10);
 
@@ -208,6 +213,19 @@ class World {
             checkThrowObjects(this);
         }, 100);
     };
+
+
+
+
+    checkFirstContact() {
+        if (this.firstContact) {
+            this.level.endboss.forEach((endboss) => {
+                endboss.firstContact = true;
+            });
+        };
+    };
+
+
 
 
     /**

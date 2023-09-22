@@ -70,6 +70,11 @@ let soundWin = new Audio('audio/Game_win.mp3');
  */
 let soundPepeHurt = new Audio('audio/pepe_hurt.mp3');
 
+
+let backgroundMusic = new Audio('audio/tex-mex.mp3');
+
+
+
 /**
  * Ein boolescher Wert, der angibt, ob die Töne aktiviert sind (true) oder nicht (false).
  * @type {boolean}
@@ -80,7 +85,7 @@ let soundOn = true;
  * Ein Array, das alle Soundobjekte enthält.
  * @type {HTMLAudioElement[]}
  */
-let allSounds = [walking_sound, jumping_sound, soundDiePepe, soundCollect, soundDieEndboss, soundCoinCollect, soundBottleCollect, soundBottleHitEnemy, soundChickenDie, soundGameOver, soundWin, soundPepeHurt];
+let allSounds = [walking_sound, jumping_sound, soundDiePepe, soundCollect, soundDieEndboss, soundCoinCollect, soundBottleCollect, soundBottleHitEnemy, soundChickenDie, soundGameOver, soundWin, soundPepeHurt, backgroundMusic];
 
 
 /**
@@ -127,3 +132,13 @@ function volumeOff() {
     document.getElementById('img_btn_sound').src = 'icons/volume_off.svg';
     soundOn = false;
 };
+
+
+function playBackgroundMusic() {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.loop = true;
+    backgroundMusic.volume = 1;
+    backgroundMusic.play();
+}
+

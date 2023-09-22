@@ -3,11 +3,12 @@
 * Reduziert auch die Anzahl der gesammelten Flaschen und aktualisiert die Flaschenleiste entsprechend.
 */
 function checkThrowObjects(char) {
-    if (char.keyboard.D && char.collectedBottles > 0 && char.character.gameRunning && !char.character.dead) {
+    if (char.keyboard.D && char.collectedBottles > 0 && char.character.gameRunning && !char.character.dead && !char.bottleThrowPaused) {
         /**
          * Die geworfene Flasche.
          * @type {ThrowableObject}
          */
+        char.bottleThrowPaused = true;        
         let bottle = new ThrowableObject(char.character.x + 25, char.character.y + 25);
         char.throwableObjects.push(bottle);
         char.collectedBottles -= 1;
@@ -17,6 +18,10 @@ function checkThrowObjects(char) {
          * @type {BottleBar}
          */
         char.bottleBar.setPercentage(char.bottleBar.percentage -= 10);
+
+        setTimeout(() => {
+            char.bottleThrowPaused = false;
+        }, 3000);
     };
 };
 
@@ -42,7 +47,7 @@ function checkColllisionsCharacterEnemies(char) {
              * Der Schaden, den der Charakter erleidet, wenn er mit einem Feind kollidiert.
              * @type {number}
              */
-            char.character.hit(10);
+            char.character.hit(25);
 
             /**
              * Die Energiestange des Charakters zur Anzeige seiner verbleibenden Energie.
@@ -72,7 +77,7 @@ function checkColllisionsCharacterEndboss(char) {
              * Der Schaden, den der Charakter erleidet, wenn er mit dem Endboss kollidiert.
              * @type {number}
              */
-            char.character.hit(20);
+            char.character.hit(50);
 
             /**
              * Die Energiestange des Charakters zur Anzeige seiner verbleibenden Energie.
@@ -218,6 +223,9 @@ function checkCollisionsBottlesEndboss(char) {
                  * @type {boolean}
                  */
                 thrownObject.hitted = true;
+
+
+                endboss.gotHit = true;
 
                 /**
                  * Der Soundeffekt, der abgespielt wird, wenn der Endboss von einer Flasche getroffen wird.

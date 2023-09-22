@@ -171,7 +171,7 @@ h1:hover {
     justify-content: center;
     gap: 32px;
     max-width: 100vw;
-    background-color: rgba(2, 179, 64, 0.819);
+    background-color: rgba(234, 188, 118, 0.819);
     border-radius: 35%; 
     max-height: 100vh;
 
@@ -215,6 +215,7 @@ h1:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    display: none;
 }
 
 .mobile-control-left, .mobile-control-right {
@@ -245,9 +246,34 @@ h1:hover {
 }
 
 
+#btn_sound {
+    z-index: 99;
+}
 
 
+.rotate-device {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 235, 205, 0.918);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
 
+.rotate-device img {
+    width: 240px;
+}
+
+.rotate-device span {
+    font-size: 16px;
+    text-align: center;
+}
 
 
 
@@ -312,5 +338,29 @@ h1:hover {
 }
 
 
+@media only screen and (orientation: landscape) {
+    .rotate-device {
+        display: none;
+    }
+
+}
+
+
+@media (hover: none) {
+    .container-mobile-control {
+        display: flex;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .canvas-container, .start-screen, canvas, .img-start-screen, .start-screen img, .game-over, .img-game-over {
+        height: 100%;
+        width: 100%;
+    }
+
+
+}
 
 
