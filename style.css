@@ -34,6 +34,11 @@ h1 {
     padding: 4px;
 }
 
+h1:hover {
+    cursor: pointer;
+    scale: 1.01;
+}
+
 .canvas-container {
     display: flex;
     flex-direction: column;
