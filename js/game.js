@@ -37,6 +37,9 @@ function start() {
         document.getElementById('container_info').classList.add('d-none');
         startTouchListener();
     }, 35);
+    if (backgroundMusic.currentTime == 0) {
+        playBackgroundMusic();
+    }
     backgroundMusic.volume = 0.2;
 };
 
@@ -62,7 +65,7 @@ function endFullscreen() {
     // Die Größe des Container-Elements für das Canvas auf den ursprünglichen Wert zurücksetzen
     document.getElementById('canvas_container').style.width = '720px'; //unset
     document.getElementById('canvas_container').style.height = '480px'; //unset
-    
+
     // Die Größe verschiedener Elemente auf 'unset' oder die ursprünglichen Werte zurücksetzen
     document.getElementById('start_screen').style.width = 'unset';
     document.getElementById('img_start_screen').style.width = '720px';
@@ -72,13 +75,13 @@ function endFullscreen() {
     document.getElementById('div_winner').style.width = '720px';
     document.getElementById('div_winner').style.height = '480px';
     document.getElementById('canvas').style.width = '720px'; //unset
-    
+
     // Das Vollbildsymbol zurücksetzen
     document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
-    
+
     // Die Überschrift für den Startbildschirm wieder anzeigen
     document.getElementById('heading_start').classList.remove('d-none');
-    
+
     // Den Vollbildmodus deaktivieren
     fullscreen = false;
 };
@@ -91,7 +94,7 @@ function startFullscreen() {
     // Die Größe des Container-Elements für das Canvas auf 100% der Bildschirmbreite und automatische Höhe setzen
     document.getElementById('canvas_container').style.width = '100vw';
     document.getElementById('canvas_container').style.height = 'auto';
-    
+
     // Die Größe verschiedener Elemente an die Bildschirmbreite anpassen
     document.getElementById('start_screen').style.width = '100vw';
     document.getElementById('img_start_screen').style.width = '100vw';
@@ -100,16 +103,16 @@ function startFullscreen() {
     document.getElementById('game_over').style.height = 'calc(100vw/720 * 480)';
     document.getElementById('div_winner').style.width = '100vw';
     document.getElementById('div_winner').style.height = 'calc(100vw/720 * 480)';
-    
+
     // Die Größe des Canvas-Elements auf 100% der Bildschirmbreite setzen
     document.getElementById('canvas').style.width = '100vw';
-    
+
     // Das Vollbildsymbol ändern
     document.getElementById('btn-fullscreen').src = 'icons/close_fullscreen.svg';
-    
+
     // Die Überschrift für den Startbildschirm ausblenden
     document.getElementById('heading_start').classList.add('d-none');
-    
+
     // Den Vollbildmodus aktivieren
     fullscreen = true;
 };

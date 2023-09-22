@@ -120,7 +120,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE);
             } else if (this.energy == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.y += 35;
+                this.y += 45;
                 if (!this.soundDiePlayed) {
                     this.playSoundDie();
                 };
