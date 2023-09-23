@@ -215,8 +215,9 @@ class World {
     };
 
 
-
-
+    /**
+   * Überprüft, ob der Spieler bereits zum ersten Mal auf den Endboss gestoßen ist, und aktualisiert den Status des Endbosses entsprechend.
+   */
     checkFirstContact() {
         if (this.firstContact) {
             this.level.endboss.forEach((endboss) => {
@@ -224,8 +225,6 @@ class World {
             });
         };
     };
-
-
 
 
     /**
@@ -252,6 +251,7 @@ class World {
             };
         });
     };
+
 
     /**
      * Spielt einen Soundeffekt ab.
@@ -283,29 +283,20 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         // Fügt verschiedene Spielobjekte zur Zeichenfläche hinzu.
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.endboss);
+        this.drawDynamicObjects();
 
         // Setzt die Kamera zurück.
         this.ctx.translate(-this.camera_x, 0);
 
         // Fügt feste Objekte wie Statusleisten hinzu.
-        this.addToMap(this.healthBar);
-        this.addToMap(this.bottleBar);
-        this.addToMap(this.coinBar);
+        this.drawStatusBars();
 
         // Überprüft, ob der Charakter bestimmte Positionen erreicht hat, um zusätzliche Statusleisten anzuzeigen.
         if (this.character.x >= 3000 || this.firstContact) {
             this.firstContact = true;
             this.addToMap(this.healthBarEndboss);
             this.addToMap(this.healthBarEndbossIcon);
-        }
+        };
 
         // Setzt die Kamera zurück, um den gesamten Canvas neu zu zeichnen.
         this.ctx.translate(this.camera_x, 0);
@@ -317,6 +308,31 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    };
+
+
+    /**
+   * Zeichnet die dynamischen Spielobjekte auf den Bildschirm, einschließlich des Hintergrunds, Flaschen, Charakters, Wolken, Feinde, geworfener Objekte, Münzen und Endbosses.
+   */
+    drawDynamicObjects() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.bottles);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.endboss);
+    };
+
+
+    /**
+ * Zeichnet die Statusleisten für Gesundheit, Flaschen und Münzen auf den Bildschirm.
+ */
+    drawStatusBars() {
+        this.addToMap(this.healthBar);
+        this.addToMap(this.bottleBar);
+        this.addToMap(this.coinBar);
     };
 
 

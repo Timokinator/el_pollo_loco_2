@@ -8,11 +8,11 @@ function checkThrowObjects(char) {
          * Die geworfene Flasche.
          * @type {ThrowableObject}
          */
-        char.bottleThrowPaused = true;        
-        let bottle = new ThrowableObject(char.character.x + 25, char.character.y + 25);
+        char.bottleThrowPaused = true;
+        let bottle = new ThrowableObject(char.character.x + 25, char.character.y + 25, char.character.otherDirection);
         char.throwableObjects.push(bottle);
         char.collectedBottles -= 1;
-
+        
         /**
          * Die Flaschenleiste zur Anzeige der verbleibenden Flaschen.
          * @type {BottleBar}
@@ -90,6 +90,9 @@ function checkColllisionsCharacterEndboss(char) {
              * @type {Audio}
              */
             char.playSound(char.soundPepeHurt);
+        } else if (char.character.x > endboss.x + endboss.width) {
+            char.character.energy = 0;
+            char.healthBar.setPercentage(char.character.energy);
         };
     });
 };
@@ -226,6 +229,8 @@ function checkCollisionsBottlesEndboss(char) {
 
 
                 endboss.gotHit = true;
+                endboss.amountGotHit += 1;
+                console.log(endboss.amountGotHit)
 
                 /**
                  * Der Soundeffekt, der abgespielt wird, wenn der Endboss von einer Flasche getroffen wird.

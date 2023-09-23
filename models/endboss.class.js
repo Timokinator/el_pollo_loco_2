@@ -106,6 +106,7 @@ class Endboss extends MovableObject {
         this.soundDieEndboss = soundDieEndboss;
         this.firstContact = false;
         this.gotHit = false;
+        this.amountGotHit = 0;
 
     };
 
@@ -126,7 +127,7 @@ class Endboss extends MovableObject {
                 };
             } else if (this.firstContact) {
                 this.playAnimation(this.IMAGES_WALKING)
-                this.x -= 20;
+                this.x -= (20 + 15*this.amountGotHit);
             };
         }, 150);
     };

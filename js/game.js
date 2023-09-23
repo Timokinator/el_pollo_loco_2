@@ -40,7 +40,7 @@ function start() {
     if (backgroundMusic.currentTime == 0) {
         playBackgroundMusic();
     }
-    backgroundMusic.volume = 0.2;
+    backgroundMusic.volume = 0.5;
 };
 
 
@@ -63,17 +63,10 @@ function toggleFullscreen() {
  */
 function endFullscreen() {
     // Die Größe des Container-Elements für das Canvas auf den ursprünglichen Wert zurücksetzen
-    document.getElementById('canvas_container').style.width = '720px'; //unset
-    document.getElementById('canvas_container').style.height = '480px'; //unset
+    setParameterEndFullscreen();
 
     // Die Größe verschiedener Elemente auf 'unset' oder die ursprünglichen Werte zurücksetzen
     document.getElementById('start_screen').style.width = 'unset';
-    document.getElementById('img_start_screen').style.width = '720px';
-    document.getElementById('img_start_screen').style.height = '480px';
-    document.getElementById('game_over').style.width = '720px';
-    document.getElementById('game_over').style.height = '480px';
-    document.getElementById('div_winner').style.width = '720px';
-    document.getElementById('div_winner').style.height = '480px';
     document.getElementById('canvas').style.width = '720px'; //unset
 
     // Das Vollbildsymbol zurücksetzen
@@ -92,19 +85,10 @@ function endFullscreen() {
  */
 function startFullscreen() {
     // Die Größe des Container-Elements für das Canvas auf 100% der Bildschirmbreite und automatische Höhe setzen
-    document.getElementById('canvas_container').style.width = '100vw';
-    document.getElementById('canvas_container').style.height = 'auto';
+    setParameterStartFullscreen();
 
     // Die Größe verschiedener Elemente an die Bildschirmbreite anpassen
     document.getElementById('start_screen').style.width = '100vw';
-    document.getElementById('img_start_screen').style.width = '100vw';
-    document.getElementById('img_start_screen').style.height = 'calc(100vw/720 * 480)';
-    document.getElementById('game_over').style.width = '100vw';
-    document.getElementById('game_over').style.height = 'calc(100vw/720 * 480)';
-    document.getElementById('div_winner').style.width = '100vw';
-    document.getElementById('div_winner').style.height = 'calc(100vw/720 * 480)';
-
-    // Die Größe des Canvas-Elements auf 100% der Bildschirmbreite setzen
     document.getElementById('canvas').style.width = '100vw';
 
     // Das Vollbildsymbol ändern
@@ -115,6 +99,65 @@ function startFullscreen() {
 
     // Den Vollbildmodus aktivieren
     fullscreen = true;
+};
+
+
+/**
+ * Stellt sicher, dass bestimmte HTML-Elemente zu Beginn im Vollbildmodus angezeigt werden.
+ * Dies wird erreicht, indem die Breite und Höhe dieser Elemente auf die Bildschirmgröße
+ * angepasst werden.
+ */
+function setParameterStartFullscreen() {
+    // Das Canvas-Container-Element wird auf die volle Bildschirmbreite (100vw) gesetzt,
+    // und die Höhe wird automatisch angepasst.
+    setParameter('canvas_container', '100vw', 'auto');
+
+    // Das Startbild wird auf die volle Bildschirmbreite (100vw) und eine Höhe, die
+    // proportional zur Breite ist, gesetzt.
+    setParameter('img_start_screen', '100vw', 'calc(100vw/720 * 480)');
+
+    // Das Game Over-Element wird auf die volle Bildschirmbreite (100vw) und eine Höhe,
+    // die proportional zur Breite ist, gesetzt.
+    setParameter('game_over', '100vw', 'calc(100vw/720 * 480)');
+
+    // Das Gewinner-Div-Element wird auf die volle Bildschirmbreite (100vw) und eine Höhe,
+    // die proportional zur Breite ist, gesetzt.
+    setParameter('div_winner', '100vw', 'calc(100vw/720 * 480)');
+};
+
+
+/**
+ * Stellt sicher, dass bestimmte HTML-Elemente am Ende des Vollbildmodus auf ihre
+ * ursprünglichen Größen zurückgesetzt werden.
+ */
+function setParameterEndFullscreen() {
+    // Das Canvas-Container-Element wird auf seine ursprüngliche Breite (720px) und
+    // Höhe (480px) zurückgesetzt.
+    setParameter('canvas_container', '720px', '480px');
+
+    // Das Startbild wird auf seine ursprüngliche Breite (720px) und Höhe (480px)
+    // zurückgesetzt.
+    setParameter('img_start_screen', '720px', '480px');
+
+    // Das Game Over-Element wird auf seine ursprüngliche Breite (720px) und Höhe (480px)
+    // zurückgesetzt.
+    setParameter('game_over', '720px', '480px');
+
+    // Das Gewinner-Div-Element wird auf seine ursprüngliche Breite (720px) und Höhe (480px)
+    // zurückgesetzt.
+    setParameter('div_winner', '720px', '480px');
+};
+
+
+/**
+ * Ändert die Breite und Höhe eines HTML-Elements mit der angegebenen ID.
+ * @param {string} id - Die ID des HTML-Elements, dessen Größe geändert werden soll.
+ * @param {string} width_value - Der neue Wert für die Breite des Elements (z.B. '100px' oder '50%').
+ * @param {string} height_value - Der neue Wert für die Höhe des Elements (z.B. '100px' oder '50%').
+ */
+function setParameter(id, width_value, height_value) {
+    document.getElementById(id).style.width = width_value;
+    document.getElementById(id).style.height = height_value;
 };
 
 

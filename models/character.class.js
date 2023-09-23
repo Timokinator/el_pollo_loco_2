@@ -267,8 +267,4 @@ class Character extends MovableObject {
             this.dead = true;
         };
     };
-
-
-
-
 };

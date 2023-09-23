@@ -38,7 +38,7 @@ class ThrowableObject extends MovableObject {
      * @param {number} x - Die x-Koordinate, an der das Objekt erstellt wird.
      * @param {number} y - Die y-Koordinate, an der das Objekt erstellt wird.
      */
-    constructor(x, y) {
+    constructor(x, y, direction) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_ROTATE);
         this.loadImages(this.IMAGES_SPLASH);
@@ -47,21 +47,26 @@ class ThrowableObject extends MovableObject {
         this.height = 400 / 4;
         this.width = 400 / 4;
         this.throw(x, y);
+        this.direction = direction;
     };
-    
+
 
     /**
      * Wirft das Objekt von den angegebenen Koordinaten aus und startet die Animation der Rotation.
      * @param {number} x - Die x-Koordinate, von der aus das Objekt geworfen wird.
      * @param {number} y - Die y-Koordinate, von der aus das Objekt geworfen wird.
      */
-    throw(x, y) {
+    throw(x, y, direction) {
         this.x = x;
         this.y = y;
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
-            this.x += 25;
+            if (!this.direction) {
+                this.x += 25;
+            } else {
+                this.x -= 25;
+            };
             if (!this.hitted) {
                 this.playAnimation(this.IMAGES_ROTATE);
             } else {
