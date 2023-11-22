@@ -120,7 +120,7 @@ function toggleSound() {
  * Schaltet den Spielsound ein und aktualisiert die Anzeige des Lautsprechersymbols.
  */
 function volumeOn() {
-    document.getElementById('img_btn_sound').src = 'icons/volume_on.svg';
+    document.getElementById('img_btn_sound').src = 'img-icon/volume_on.svg';
     soundOn = true;
 };
 
@@ -129,7 +129,7 @@ function volumeOn() {
  * Schaltet den Spielsound aus und aktualisiert die Anzeige des Lautsprechersymbols.
  */
 function volumeOff() {
-    document.getElementById('img_btn_sound').src = 'icons/volume_off.svg';
+    document.getElementById('img_btn_sound').src = 'img-icon/volume_off.svg';
     soundOn = false;
 };
 

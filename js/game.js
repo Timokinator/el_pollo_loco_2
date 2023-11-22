@@ -70,7 +70,7 @@ function endFullscreen() {
     document.getElementById('canvas').style.width = '720px'; //unset
 
     // Das Vollbildsymbol zurücksetzen
-    document.getElementById('btn-fullscreen').src = 'icons/open_fullscreen.svg';
+    document.getElementById('btn-fullscreen').src = 'img-icon/open_fullscreen.svg';
 
     // Die Überschrift für den Startbildschirm wieder anzeigen
     document.getElementById('heading_start').classList.remove('d-none');
@@ -92,7 +92,7 @@ function startFullscreen() {
     document.getElementById('canvas').style.width = '100vw';
 
     // Das Vollbildsymbol ändern
-    document.getElementById('btn-fullscreen').src = 'icons/close_fullscreen.svg';
+    document.getElementById('btn-fullscreen').src = 'img-icon/close_fullscreen.svg';
 
     // Die Überschrift für den Startbildschirm ausblenden
     document.getElementById('heading_start').classList.add('d-none');
